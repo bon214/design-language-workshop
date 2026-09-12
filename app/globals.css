@@ -148,3 +148,13 @@
 .standard[data-chapter='1'] .cards>div:nth-child(2){background-color:#c5e8d5}
 .standard[data-chapter='1'] .cards>div:nth-child(3){background-color:#ffdbaf}
 .standard[data-chapter='1'] .cards>div:nth-child(4){background-color:#f8c8e0}
+
+/* Case profile uses the scenario page's panel and the shared heading styles. */
+.profile-basic{padding:22px 28px}
+.profile-basic h2{margin-bottom:16px}
+.profile-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:8px 42px;list-style:disc;margin:0;padding-left:1.2em;font-size:clamp(18px,1.55vw,24px);line-height:1.55}
+.profile-facts li{padding-left:2px}
+.profile-goal{margin-top:26px;padding-top:18px;border-top:1.5px dashed #aaa3ae}
+.profile-goal h2{margin:0 0 10px;font-size:16px;font-weight:800;line-height:1.5}
+.profile-goal p{margin:0;font-size:clamp(21px,1.9vw,29px);font-weight:800;line-height:1.6;letter-spacing:-.025em}
+@media(max-width:680px){.profile-basic{padding:20px}.profile-facts{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;gap:10px;font-size:18px}.profile-goal{margin-top:24px}.profile-goal p{font-size:21px}}
