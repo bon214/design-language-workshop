@@ -313,7 +313,7 @@ export const slides:Slide[]=
     "chapter": 2,
     "kind": "case",
     "tag": "WORK 1 · 共通テーマ",
-    "title": "案内ページに到達しても、\n申請を始められないのはなぜ？",
+    "title": "住所変更関連手続きの進め方がよく分からない",
     "sub": "引越しに伴う住所・通勤情報の変更",
     "items": [
       [
