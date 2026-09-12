@@ -1,4 +1,4 @@
-export type Slide={chapter:number;kind?:string;title:string;sub?:string;items?:string[][];note:string;time?:number;mode?:string;done?:string;tag?:string;bottom?:string};
+export type Slide={chapter:number;kind?:string;title:string;sub?:string;items?:string[][];note:string;time?:number;timerPlacement?:'badge';mode?:string;done?:string;tag?:string;bottom?:string};
 export const chapters=["導入","考え方と型","共通テーマ","説明・フィードバック","ミニ講義","UI判断のヒント","自チームテーマ","改善提案","デザインレビュー","判断の更新","もう一度説明","実務へ持ち帰る","運営・参考"];
 export const schedule=[["09:00–09:30","導入・Before"],["09:30–10:10","講義"],["10:10–10:25","休憩"],["10:25–11:10","Work1｜共通テーマ"],["11:10–11:40","説明・フィードバック"],["11:40–12:00","ミニ講義"],["12:00–13:00","昼休憩"],["13:00–13:25","UI判断のヒント"],["13:25–14:25","自プロダクトテーマ"],["14:25–14:40","休憩"],["14:40–15:20","改善提案をまとめる"],["15:20–16:00","デザインレビュー"],["16:00–16:30","判断・提案を更新"],["16:30–16:45","もう一度「なぜ？」に答える"],["16:45–17:00","振り返り・まとめ"]];
 export const steps=[["誰？","ユーザー・状況","USER / CONTEXT"],["何が起きた？","事実","FACT"],["どう考えた？","解釈","INTERPRETATION"],["何が問題？","課題・ニーズ","PROBLEM / NEED"],["どうなってほしい？","目指す状態","TARGET UX"],["何ができる？","選択肢","ALTERNATIVES"],["なぜこれ？","判断","DESIGN DECISION"]];
@@ -307,7 +307,8 @@ export const slides:Slide[]=
     "sub": "10:25 再開",
     "time": 15,
     "bottom": "再開後は、共通のケースを使って7項目を整理します。",
-    "note": "10:10–10:25。3人組を準備。投影はこの画面のまま。タイマーは押して開始する。"
+    "note": "10:10–10:25。3人組を準備。投影はこの画面のまま。タイマーは押して開始する。",
+    "timerPlacement": "badge"
   },
   {
     "chapter": 2,
