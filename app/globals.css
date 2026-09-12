@@ -90,3 +90,6 @@
 /* Shared workshop concept character: preserve the approved line-art silhouette. */
 .comic-listener{width:auto;height:290px;bottom:-70px;left:0;object-fit:contain;mix-blend-mode:multiply;transform:none}
 @media(max-width:680px){.comic-listener{width:auto;height:235px;bottom:-50px}}
+
+.dialogue-closing{display:flex;align-items:center;gap:24px}.dialogue-cheers{display:block;width:220px;max-width:26%;height:auto;flex-shrink:0;mix-blend-mode:multiply}.dialogue-closing .dialogue-punchline{flex:1;font-size:clamp(24px,2.5vw,36px);text-wrap:balance}
+@media(max-width:680px){.dialogue-closing{gap:12px;flex-direction:column}.dialogue-cheers{width:190px;max-width:65%}.dialogue-closing .dialogue-punchline{width:100%;font-size:25px}}
