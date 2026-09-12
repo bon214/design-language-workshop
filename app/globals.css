@@ -129,8 +129,8 @@
 @media(max-width:1000px){.has-break-timer{--break-timer-size:230px}.break-timer{padding:20px;gap:8px}.break-timer output{font-size:48px}}
 @media(max-width:680px){.has-break-timer{padding-right:0}.break-timer{position:relative;right:auto;top:auto;transform:none;margin:30px auto 0;width:250px;max-width:100%;padding:20px}.break-timer output{font-size:56px}}
 
-.case .slide-heading{margin-bottom:clamp(30px,4vw,60px)}
-.case-situation h2{font-size:clamp(21px,1.9vw,28px);font-weight:800;line-height:1.5;margin:0 0 22px}
-.case-situation p{font-size:clamp(26px,2.65vw,40px);font-weight:800;line-height:1.55;letter-spacing:-.025em;margin:0}
-.case-context{font-size:clamp(19px,1.8vw,28px);font-weight:400;line-height:1.75;white-space:pre-line;margin:clamp(38px,4vw,64px) 0 0}
-@media(max-width:680px){.case .slide-heading{margin-bottom:30px}.case-situation h2{font-size:20px;margin-bottom:16px}.case-situation p{font-size:25px}.case-context{font-size:18px;margin-top:30px}}
+.case-situation{padding:24px 28px;border:1.5px solid var(--ink);border-radius:16px;background:#f2eafa;box-shadow:5px 5px 0 var(--ink)}
+.case-situation h2{display:table;font-size:16px;font-weight:800;line-height:1.5;margin:0 0 18px;padding:5px 12px;border:1.5px solid var(--ink);border-radius:999px;background:var(--yellow)}
+.case-situation p{font-size:clamp(22px,2vw,32px);font-weight:700;line-height:1.65;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.case-context{font-size:clamp(18px,1.6vw,25px);font-weight:400;line-height:1.75;white-space:pre-line;margin:28px 0 0;padding-top:20px;border-top:1.5px dashed #aaa3ae}
+@media(max-width:680px){.case-situation{padding:20px;border-radius:13px;box-shadow:3px 3px 0 var(--ink)}.case-situation h2{font-size:15px;margin-bottom:16px}.case-situation p{font-size:22px}.case-context{font-size:18px;margin-top:24px;padding-top:18px}}
