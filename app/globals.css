@@ -110,3 +110,6 @@
 @media(min-width:1001px) and (max-height:850px){.evidence-check .cards p{font-size:18px}}
 
 .evidence-check .cards>div{padding:24px;background:#e5f3e9}.evidence-check .cards>div:nth-child(2){background:#ffecd1}.evidence-check .card-kicker{position:static;margin-bottom:20px;background:var(--yellow)}.evidence-check h1{text-wrap:balance}
+
+.evidence-mini-bubble{position:relative;display:table;margin:18px 0 20px;padding:8px 16px;border:1.5px solid var(--ink);border-radius:20px;background:var(--yellow);font-size:16px;font-weight:800;line-height:1.4;box-shadow:3px 3px 0 var(--ink)}
+.evidence-mini-bubble::after{content:"";position:absolute;left:26px;bottom:-6px;width:10px;height:10px;background:var(--yellow);border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
