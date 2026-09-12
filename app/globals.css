@@ -118,12 +118,13 @@
 @media(max-width:680px){.evidence-heading-labels{flex-wrap:wrap;gap:20px 24px;padding:8px 0 20px}.evidence-mini-bubble{margin:8px 0 0 4px}}
 
 .has-break-timer{padding-right:34%}
+.has-break-timer h1{font-size:clamp(64px,6.5vw,105px);line-height:1.2;letter-spacing:-.06em;margin:68px 0 30px}
 .break-timer{position:absolute;right:0;top:50%;transform:translateY(-50%);width:clamp(230px,25vw,320px);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;border:2px solid var(--ink);border-radius:50%;background:var(--yellow);box-shadow:6px 6px 0 var(--ink)}
 .break-timer-label{font-size:16px;font-weight:800;text-align:center;max-width:100%;line-height:1.4}
 .break-timer output{font-size:clamp(44px,5vw,72px);font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.04em;line-height:1.1;white-space:nowrap}
 .break-timer-actions{display:flex;align-items:center;justify-content:center;gap:6px}
 .break-timer-actions button{width:36px;height:36px;min-height:36px;border:1.5px solid var(--ink);border-radius:50%;background:var(--paper);padding:0}
-.break-timer-start button{height:36px;border:1.5px solid var(--ink);border-radius:999px;background:var(--ink);color:white;padding:0 14px;font-size:14px;font-weight:700}
+.break-timer-start button{width:40px;height:40px;border:1.5px solid var(--ink);border-radius:50%;background:var(--ink);color:white;padding:0}
 .break-timer button:hover{background:var(--paper);color:var(--ink)}
 .break-timer.finished{background:var(--pink)}
 @media(max-width:1000px){.has-break-timer{padding-right:270px}.break-timer{width:230px;padding:20px;gap:8px}.break-timer output{font-size:48px}}

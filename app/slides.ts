@@ -303,10 +303,9 @@ export const slides:Slide[]=
   {
     "chapter": 1,
     "kind": "break",
-    "title": "15分間の休憩です",
-    "sub": "10:25 再開",
+    "title": "休憩！",
     "time": 15,
-    "bottom": "再開後は、共通のケースを使って7項目を整理します。",
+    "bottom": "休憩後にワークを通じて言語化の実践を行います",
     "note": "10:10–10:25。3人組を準備。投影はこの画面のまま。タイマーは押して開始する。",
     "timerPlacement": "badge"
   },
