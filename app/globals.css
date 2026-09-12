@@ -93,3 +93,14 @@
 
 .dialogue-closing{display:flex;align-items:center;gap:24px}.dialogue-cheers{display:block;width:220px;max-width:26%;height:auto;flex-shrink:0;mix-blend-mode:multiply}.dialogue-closing .dialogue-punchline{flex:1;font-size:clamp(24px,2.5vw,36px);text-wrap:balance}
 @media(max-width:680px){.dialogue-closing{gap:12px;flex-direction:column}.dialogue-cheers{width:190px;max-width:65%}.dialogue-closing .dialogue-punchline{width:100%;font-size:25px}}
+
+/* Click-to-reveal keeps the closing row space reserved to avoid layout shifts. */
+.role-dialogue:not(.dialogue-revealed){cursor:pointer}
+.role-dialogue .dialogue-closing{visibility:hidden;pointer-events:none}
+.role-dialogue.dialogue-revealed .dialogue-closing{visibility:visible;pointer-events:auto}
+.dialogue-revealed .dialogue-cheers{animation:cheers-pop 650ms cubic-bezier(.2,.8,.2,1) both}
+.dialogue-revealed .dialogue-punchline{animation:dialogue-impact 650ms 90ms cubic-bezier(.2,.8,.2,1) both;transform-origin:center}
+@keyframes cheers-pop{0%{opacity:0;transform:translateY(34px) scale(.65) rotate(-8deg)}60%{opacity:1;transform:translateY(-8px) scale(1.08) rotate(3deg)}80%{transform:translateY(2px) scale(.98) rotate(-1deg)}100%{opacity:1;transform:none}}
+@keyframes dialogue-impact{0%{opacity:0;transform:translateY(24px) scale(.8)}55%{opacity:1;transform:translateY(-4px) scale(1.05)}78%{transform:translateY(2px) scale(.985)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.dialogue-revealed .dialogue-cheers,.dialogue-revealed .dialogue-punchline{animation:none}}
+@media print{.role-dialogue .dialogue-closing{visibility:visible}}
