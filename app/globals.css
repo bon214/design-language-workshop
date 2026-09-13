@@ -466,3 +466,10 @@
 .compact-template-card .template-callout::after { content: ''; position: absolute; left: 22px; bottom: -6px; width: 10px; height: 10px; background: var(--yellow); border-right: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); transform: rotate(45deg); }
 @media(max-width:680px) { .compact-template-card:has(.template-callout) { margin-top: 48px; } }
 
+
+/* Afternoon break: reference composition with an interactive play control. */
+.break[data-break="afternoon"] { background: var(--orange); }
+.break[data-break="afternoon"] .has-break-timer { width: min(100%, 740px); min-height: 340px; display: flex; flex-direction: column; justify-content: center; }
+.break[data-break="afternoon"] .has-break-timer h1 { margin: 0 0 42px; }
+.break[data-break="afternoon"] .lead { font-size: clamp(16px, 1.65vw, 26px); margin: 0; }
+@media(max-width:680px) { .break[data-break="afternoon"] .has-break-timer { display: block; min-height: 0; } }

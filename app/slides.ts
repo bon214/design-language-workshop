@@ -1221,12 +1221,11 @@ export const slides:Slide[]=
   {
     "chapter": 6,
     "kind": "break",
-    "title": "15分間の休憩です",
+    "title": "休憩！",
     "tag": "休憩",
     "sourceId": "2:2805",
     "note": "15:15–15:30。午後の15分休憩。15:30再開。",
-    "sub": "15:30 再開",
-    "bottom": "再開後は、整理した根拠をもとに改善提案をまとめます。",
+    "bottom": "休憩後にワークを通じて言語化の実践を行います",
     "time": 15,
     "timerPlacement": "badge",
     "timeWindow": "15:15–15:30"
