@@ -10,3 +10,5 @@
 ## 生成プロンプト
 
 Edit this workshop mascot illustration. Change pose only: the same character is actively working at the laptop, leaning slightly toward the screen, both arms uncrossed and both hands typing on the keyboard. Remove the worried spiral above the head. Preserve identity exactly: black wavy hair, round black glasses with blank white lenses, featureless white face, dark charcoal collared shirt, yellow beverage can on head, thick smooth black outlines. Keep laptop, clean flat illustration style, square composition, uniform pale lavender #F2EAFA background, no text or additional objects. Keep the composition upright: the entire illustration and frame will be tilted together by CSS. Leave comfortable padding around the can and laptop.
+
+2026-09-14更新: 髪の分け目の白線を黒い塗りに変更。今後の生成でも髪は白線のない黒い塗りを維持する。
