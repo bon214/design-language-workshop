@@ -545,8 +545,7 @@ export const slides:Slide[]=
     "note": "09:45–10:00。午前の15分休憩。10:00再開。",
     "bottom": "休憩後にワークを通じて言語化の実践を行います",
     "time": 15,
-    "timerPlacement": "badge",
-    "timeWindow": "09:45–10:00"
+    "timerPlacement": "badge"
   },
   {
     "chapter": 2,
