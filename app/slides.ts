@@ -121,7 +121,7 @@ export const slides:Slide[]=
   {
     "chapter": 0,
     "kind": "goal",
-    "title": "デザイン提案時にデザインの根拠を共有できるようになる",
+    "title": "デザインの根拠を相手に共有できるようになる",
     "tag": "今日のゴール",
     "sourceId": "30:899",
     "note": "09:12–09:14。Figmaの本文と順番に沿って説明する。",
