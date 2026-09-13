@@ -9,11 +9,12 @@ import conceptCharacter from '../public/concept-character.png?url';
 import welcomeCharacter from '../public/concept-character-welcome.png?url';
 import karutaCharacters from '../public/concept-character-karuta.png?url';
 import caseSearchReference from '../public/case-search-reference.png?url';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Expand, Grid2X2, Pause, Play, RotateCcw, X, EyeOff, UserRound, FileText, Lightbulb, TriangleAlert, Target, GitFork, CircleCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { chapters, schedule, slides, type Slide } from './slides';
+import PresentationWindow from './presentation-window';
 const pad=(n:number)=>String(n).padStart(2,'0');
 function SlideHeading({s}:{s:Slide}){
  return <div className="slide-heading">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1>{s.title}</h1>{s.sub&&<p className="lead">{s.sub}</p>}</div>
@@ -55,16 +56,39 @@ function Content({s,revealed=false,breakTimer}:{s:Slide;revealed?:boolean;breakT
  s.items?<div className={`cards ${s.kind==='compare'?'compare':''} ${s.kind==='quote'?'quotes':''} count-${s.items.length}`}>{s.items.map(([a,b,c],i)=><div key={a}><span className="card-kicker">{pad(i+1)}</span><h2>{a}</h2>{b&&<p>{b}</p>}{c&&<small>{c}</small>}</div>)}</div>:null}
  {s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>
 }
+const subscribeView=(changed:()=>void)=>{window.addEventListener('popstate',changed);return()=>window.removeEventListener('popstate',changed)};
 export default function Home(){
- const [index,setIndex]=useState(0),[menu,setMenu]=useState(false),[notes,setNotes]=useState(false),[black,setBlack]=useState(false),[full,setFull]=useState(false),[message,setMessage]=useState('');
+ const view=useSyncExternalStore(subscribeView,()=>new URLSearchParams(window.location.search).get('view')||'workshop',()=>'workshop');
+ return view==='presentation'?<PresentationWindow/>:<Workshop slideOnly={view==='slide'}/>;
+}
+function Workshop({slideOnly=false}:{slideOnly?:boolean}){
+ const [index,setIndex]=useState(0),[menu,setMenu]=useState(false),[notes,setNotes]=useState(false),[black,setBlack]=useState(false),[message,setMessage]=useState('');
  const [seconds,setSeconds]=useState<number|null>(null),[running,setRunning]=useState(false),[timerTitle,setTimerTitle]=useState(''),[timerTotal,setTimerTotal]=useState(0),[timerSlideIndex,setTimerSlideIndex]=useState<number|null>(null);
  const [revealedSlide,setRevealedSlide]=useState<number|null>(null);
  const dialogueRevealed=revealedSlide===index;
- const deadline=useRef(0),touch=useRef<[number,number]|null>(null); const s=slides[index];
+ const deadline=useRef(0),touch=useRef<[number,number]|null>(null),presentationTab=useRef<Window|null>(null); const s=slides[index];
  const go=(n:number)=>{const next=Math.max(0,Math.min(slides.length-1,n));setIndex(next);setRevealedSlide(null);window.location.hash=`slide-${next+1}`;setMessage('')};
- useEffect(()=>{const read=()=>{const m=window.location.hash.match(/^#slide-(\d+)$/);if(m){setIndex(Math.max(0,Math.min(slides.length-1,Number(m[1])-1)));setRevealedSlide(null)}};read();window.addEventListener('hashchange',read);const f=()=>setFull(!!document.fullscreenElement);document.addEventListener('fullscreenchange',f);return()=>{window.removeEventListener('hashchange',read);document.removeEventListener('fullscreenchange',f)}},[]);
- async function toggleFull(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else setMessage('全画面表示はブラウザの表示メニューから切り替えてください。')}catch{setMessage('全画面表示はブラウザの表示メニューから切り替えてください。')}}
- useEffect(()=>{const key=(e:KeyboardEvent)=>{if(menu||(e.target instanceof HTMLElement&&e.target.closest('input,textarea,select,[contenteditable="true"]')))return;if(black){if(['b','B','Escape',' '].includes(e.key)){e.preventDefault();setBlack(false)}return}if(s.kind==='role-dialogue'&&!dialogueRevealed&&(e.key===' '||e.key==='Enter')&&!(e.target instanceof HTMLElement&&e.target.closest('button,a'))){e.preventDefault();setRevealedSlide(index);return}if(e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&!(e.target instanceof HTMLElement&&e.target.closest('button,a')))){e.preventDefault();go(index+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(index-1)}if(e.key==='Home'){e.preventDefault();go(0)}if(e.key==='End'){e.preventDefault();go(slides.length-1)}if(e.key.toLowerCase()==='f'){e.preventDefault();void toggleFull()}if(e.key.toLowerCase()==='b'){e.preventDefault();setBlack(true)}};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[index,menu,black,dialogueRevealed,s.kind]);
+ useEffect(()=>{const read=()=>{const m=window.location.hash.match(/^#slide-(\d+)$/);if(m){setIndex(Math.max(0,Math.min(slides.length-1,Number(m[1])-1)));setRevealedSlide(null)}};read();window.addEventListener('hashchange',read);return()=>window.removeEventListener('hashchange',read)},[]);
+ const toggleFull=useCallback(()=>{
+  if(slideOnly&&window.parent!==window){
+   window.parent.postMessage({type:'workshop-fullscreen'},window.location.origin==='null'?'*':window.location.origin);
+   return;
+  }
+  const url=new URL(window.location.href);
+  url.searchParams.set('view','presentation');
+  url.hash=`slide-${index+1}`;
+  if(presentationTab.current&&!presentationTab.current.closed){
+   presentationTab.current.location.href=url.href;
+   presentationTab.current.focus();
+   return;
+  }
+  presentationTab.current=window.open(url.href,'_blank');
+  setMessage(presentationTab.current?'':'上映タブを開けませんでした。ブラウザーでポップアップを許可して、もう一度押してください。');
+ },[index,slideOnly]);
+ useEffect(()=>{
+  if(slideOnly&&window.parent!==window)window.parent.postMessage({type:'workshop-slide',hash:`#slide-${index+1}`},window.location.origin==='null'?'*':window.location.origin);
+ },[index,slideOnly]);
+ useEffect(()=>{const key=(e:KeyboardEvent)=>{if(menu||(e.target instanceof HTMLElement&&e.target.closest('input,textarea,select,[contenteditable="true"]')))return;if(black){if(['b','B','Escape',' '].includes(e.key)){e.preventDefault();setBlack(false)}return}if(s.kind==='role-dialogue'&&!dialogueRevealed&&(e.key===' '||e.key==='Enter')&&!(e.target instanceof HTMLElement&&e.target.closest('button,a'))){e.preventDefault();setRevealedSlide(index);return}if(e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&!(e.target instanceof HTMLElement&&e.target.closest('button,a')))){e.preventDefault();go(index+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(index-1)}if(e.key==='Home'){e.preventDefault();go(0)}if(e.key==='End'){e.preventDefault();go(slides.length-1)}if(e.key.toLowerCase()==='f'){e.preventDefault();toggleFull()}if(e.key.toLowerCase()==='b'){e.preventDefault();setBlack(true)}};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[index,menu,black,dialogueRevealed,s.kind,toggleFull]);
  useEffect(()=>{if(!running)return;const tick=()=>{const left=Math.max(0,Math.ceil((deadline.current-Date.now())/1000));setSeconds(left);if(left===0)setRunning(false)};tick();const id=window.setInterval(tick,250);return()=>clearInterval(id)},[running]);
  function start(){const total=(s.time||0)*60;setSeconds(total);setTimerTotal(total);setTimerSlideIndex(index);setTimerTitle(s.tag||(s.kind==='break'?'休憩':s.title));deadline.current=Date.now()+total*1000;setRunning(true)}
  function pause(){if(running){setSeconds(Math.max(0,Math.ceil((deadline.current-Date.now())/1000)));setRunning(false)}else if(seconds!==null&&seconds>0){deadline.current=Date.now()+seconds*1000;setRunning(true)}}
@@ -75,7 +99,7 @@ export default function Home(){
  const timerActions=seconds!==null?<><output className="sr-only">{seconds===0?'時間です。作業をまとめましょう。':''}</output><Button variant="ghost" onClick={pause} disabled={seconds===0} aria-label={running?'タイマーを一時停止':'タイマーを再開'}>{running?<Pause/>:<Play/>}</Button><Button variant="ghost" onClick={()=>{setRunning(false);setSeconds(timerTotal)}} aria-label="タイマーをリセット"><RotateCcw/></Button><Button variant="ghost" onClick={()=>{setRunning(false);setSeconds(null);setTimerSlideIndex(null)}} aria-label="タイマーを閉じる"><X/></Button></>:null;
  const displaySeconds=timerOnThisSlide?seconds!:(s.time||0)*60;
  const breakTimer=timerInSlide?<section className={`break-timer ${workTimerInSlide?'work-timer':''} ${timerOnThisSlide&&seconds===0?'finished':''}`} aria-label={workTimerInSlide?'演習タイマー':'休憩タイマー'}><output role="timer" aria-live="off" aria-label="残り時間">{pad(Math.floor(displaySeconds/60))}:{pad(displaySeconds%60)}</output>{timerOnThisSlide?<div className="break-timer-actions">{timerActions}</div>:<div className="break-timer-start">{timerStart}</div>}</section>:undefined;
- return <main className={`workshop ${full?'fullscreen':''}`}><header className="toolbar"><a className="brand" href="#slide-1" aria-label="表紙へ">D<span>/</span>W</a><span className="site-title">デザインの言語化 <span>WORKSHOP</span></span><div className="toolbar-actions"><Button variant="ghost" onClick={()=>setMenu(true)}><Grid2X2/>進行・目次</Button><Button variant="ghost" onClick={()=>{setNotes(!notes)}} aria-pressed={notes}><BookOpen/><span className="button-label">講師メモ</span></Button><Button variant="ghost" onClick={toggleFull} aria-label={full?'全画面を終了':'全画面表示'} title="F：全画面"><Expand/></Button></div></header>
+ return <main className={`workshop ${slideOnly?'slide-only':''}`}><header className="toolbar"><a className="brand" href="#slide-1" aria-label="表紙へ">D<span>/</span>W</a><span className="site-title">デザインの言語化 <span>WORKSHOP</span></span><div className="toolbar-actions"><Button variant="ghost" onClick={()=>setMenu(true)}><Grid2X2/>進行・目次</Button><Button variant="ghost" onClick={()=>{setNotes(!notes)}} aria-pressed={notes}><BookOpen/><span className="button-label">講師メモ</span></Button><Button variant="ghost" onClick={toggleFull} aria-label="全画面表示（別タブ）" title="F：別タブで上映"><Expand/></Button></div></header>
  <div className="progress-track" aria-hidden="true"><div style={{width:`${(index+1)/slides.length*100}%`}}/></div>
  <article className={`slide ${s.kind||'standard'} ${s.illustration?'with-character':''} ${s.sourceId==='2:3887'||s.sourceId==='35:2431'?'closing-cover':''} ${dialogueRevealed?'dialogue-revealed':''}`} data-chapter={s.chapter} data-source={s.sourceId} data-work={s.tag?.match(/WORK\s*([12])/i)?.[1]} data-break={s.sourceId==='2:2169'?'lunch':s.sourceId==='2:2805'?'afternoon':undefined} key={index} aria-label={`${index+1}枚目：${s.title}`} onTouchStart={e=>{touch.current=[e.touches[0].clientX,e.touches[0].clientY]}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current[0],dy=e.changedTouches[0].clientY-touch.current[1];if(Math.abs(dx)>90&&Math.abs(dx)>Math.abs(dy)*2)go(index+(dx<0?1:-1));touch.current=null}}><Content s={s} revealed={dialogueRevealed} breakTimer={workTimerInSlide?undefined:breakTimer}/>{workTimerInSlide&&breakTimer}{s.kind==='role-dialogue'&&!dialogueRevealed&&<button className="dialogue-reveal-trigger" onClick={()=>setRevealedSlide(index)} aria-label="対話についてのメッセージを表示"/>}<div className="slide-folio" aria-hidden="true">{pad(index+1)} <span>/ {slides.length}</span></div></article>
  {notes&&<aside className="speaker-notes"><strong>講師メモ <small>この画面にも表示されます</small></strong><p>{s.note}</p><Button variant="ghost" onClick={()=>setNotes(false)} aria-label="講師メモを閉じる"><X/></Button></aside>}
