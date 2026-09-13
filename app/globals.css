@@ -387,7 +387,7 @@
 .slide[data-source="2:1411"] .flow-grid > div { min-height: 168px; padding: 16px; border-radius: 12px; }
 .slide[data-source="2:1411"] .flow-number { margin-bottom: 12px; }
 .slide[data-source="2:1411"] .flow-grid h2 { margin: 0; font-size: clamp(16px, 1.5vw, 23px); line-height: 1.5; letter-spacing: -.025em; }
-.slide[data-source="2:1411"] .flow-grid > div:not(:last-child)::after { top: 50%; right: -26px; width: 26px; height: 26px; font-size: 20px; transform: translateY(-50%); }
+.slide[data-source="2:1411"] .flow-grid > div:not(:last-child)::after { content: ""; display: block; top: 50%; right: -23px; width: 20px; height: 16px; border-radius: 0; background: var(--ink); clip-path: polygon(0 43%, 72% 43%, 48% 13%, 58% 4%, 100% 50%, 58% 96%, 48% 87%, 72% 57%, 0 57%); transform: translateY(-50%); }
 .slide[data-source="2:1411"] .flow-grid > div:nth-child(4)::after { display: none; }
 @media (max-width: 680px) {
  .slide[data-source="2:1411"] .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
