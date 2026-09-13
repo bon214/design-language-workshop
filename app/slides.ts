@@ -419,6 +419,31 @@ export const slides:Slide[]=
   },
   {
     "chapter": 1,
+    "kind": "compact-template",
+    "title": "デザインの言語化テンプレート",
+    "tag": "02 / テンプレート",
+    "sourceId": "added-template-step-3",
+    "items": [
+      [
+        "何が起きている？",
+        "ユーザー・状況・事実"
+      ],
+      [
+        "何が課題？",
+        "解釈・課題"
+      ],
+      [
+        "どうなれば良い？",
+        "目指す状態・選択肢"
+      ],
+      [
+        "何を提供する？",
+        "価値"
+      ]
+    ]
+  },
+  {
+    "chapter": 1,
     "kind": "compare",
     "title": "ユーザーの要望から、 背景にあるニーズを考える",
     "tag": "02 / ミニ講義",
