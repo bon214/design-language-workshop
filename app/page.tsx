@@ -22,7 +22,7 @@ function PhrasedTitle({text}:{text:string}){
  return <>{parts.map((part,i)=><span className="title-phrase" key={i}>{part}</span>)}</>;
 }
 function ConceptArt({welcome=false,thinking=false,working=false,seating=false,className=''}:{welcome?:boolean;thinking?:boolean;working?:boolean;seating?:boolean;className?:string}){
- return <img className={`concept-art ${welcome?'welcome-art':''} ${className}`} src={seating?seatingCharacter:working?workingCharacter:thinking?thinkingCharacter:welcome?welcomeCharacter:conceptCharacter} alt="" aria-hidden="true"/>;
+ return <>{seating&&<svg width="0" height="0" aria-hidden="true" style={{position:'absolute'}}><filter id="seating-background"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -5 10 -5 0 1"/><feComposite in2="SourceAlpha" operator="in"/></filter></svg>}<img className={`concept-art ${welcome?'welcome-art':''} ${className}`} src={seating?seatingCharacter:working?workingCharacter:thinking?thinkingCharacter:welcome?welcomeCharacter:conceptCharacter} style={seating?{filter:'url(#seating-background)'}:undefined} alt="" aria-hidden="true"/></>;
 }
 function Content({s,revealed=false,breakTimer}:{s:Slide;revealed?:boolean;breakTimer?:ReactNode}){
  if(s.kind==='goal')return <><div className="slide-heading">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1>{s.title}</h1></div><div className="goal-grid">{s.items?.map(([label,detail])=><section key={label}><h2>{label}</h2>{detail&&<p>{detail}</p>}</section>)}</div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;

@@ -4,7 +4,7 @@
 
 - 素材: public/concept-character-seating.png
 - 作成: built-in image_gen
-- フレームと画像を共通の親要素で4度回転。
+- 外枠・影・回転を削除。机の4本の脚を延長し、スライドと同系の紫背景へ更新。
 
 ## プロンプト
 
