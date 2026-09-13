@@ -1,5 +1,6 @@
 'use client';
 /* oxlint-disable next/no-img-element -- This slide deck also ships as static GitHub Pages assets without an image optimization server. */
+import thinkingCharacter from '../public/concept-character-thinking.png?url';
 import conceptCharacter from '../public/concept-character.png?url';
 import welcomeCharacter from '../public/concept-character-welcome.png?url';
 import karutaCharacters from '../public/concept-character-karuta.png?url';
@@ -17,12 +18,12 @@ function PhrasedTitle({text}:{text:string}){
  const parts=text.split(/(?<=：)|(?<=！)|(?<=している)|(?<=にて)|(?<=デザインを)|(?<=手続きの)|(?<=席次表を元に)|(?<=席替えを)|(?<=回答を)/).filter(Boolean);
  return <>{parts.map((part,i)=><span className="title-phrase" key={i}>{part}</span>)}</>;
 }
-function ConceptArt({welcome=false,className=''}:{welcome?:boolean;className?:string}){
- return <img className={`concept-art ${welcome?'welcome-art':''} ${className}`} src={welcome?welcomeCharacter:conceptCharacter} alt="" aria-hidden="true"/>;
+function ConceptArt({welcome=false,thinking=false,className=''}:{welcome?:boolean;thinking?:boolean;className?:string}){
+ return <img className={`concept-art ${welcome?'welcome-art':''} ${className}`} src={thinking?thinkingCharacter:welcome?welcomeCharacter:conceptCharacter} alt="" aria-hidden="true"/>;
 }
 function Content({s,revealed=false,breakTimer}:{s:Slide;revealed?:boolean;breakTimer?:ReactNode}){
  if(s.kind==='goal')return <><div className="slide-heading">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1>{s.title}</h1></div><div className="goal-grid">{s.items?.map(([label,detail])=><section key={label}><h2>{label}</h2>{detail&&<p>{detail}</p>}</section>)}</div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
- if(s.kind==='transition')return <div className="transition-composition"><div className="transition-copy">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1><PhrasedTitle text={s.title}/></h1>{s.sub&&<p className="lead">{s.sub}</p>}{s.bottom&&<p className="transition-bottom">{s.bottom}</p>}{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}</div><div className={`transition-art ${s.illustration==='welcome'?'paper-art':''}`}><ConceptArt welcome={s.illustration==='welcome'}/></div></div>;
+ if(s.kind==='transition')return <div className="transition-composition"><div className="transition-copy">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1><PhrasedTitle text={s.title}/></h1>{s.sub&&<p className="lead">{s.sub}</p>}{s.bottom&&<p className="transition-bottom">{s.bottom}</p>}{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}</div><div className={`transition-art ${s.illustration==='welcome'?'paper-art':''}`}><ConceptArt welcome={s.illustration==='welcome'} thinking={s.sourceId==='35:1446'}/></div></div>;
  if(s.kind==='karuta')return <><SlideHeading s={s}/><div className="karuta-scene"><img src={karutaCharacters} alt="二人のコンセプトキャラクターがカルタで遊んでいる様子"/></div>{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
  if(s.kind==='guest')return <div className="guest-composition"><SlideHeading s={s}/><div className="guest-duration">{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}{s.time&&<span>{s.time}<small>分</small></span>}</div></div>;
  if(s.kind==='reference-image')return <><SlideHeading s={s}/><div className="reference-image-layout"><a href={caseSearchReference} target="_blank" rel="noreferrer" aria-label="検索結果の参考画像を大きく表示"><img src={caseSearchReference} alt="T-Waveで住所変更を検索した結果の参考画像"/></a>{s.callout&&<p className="reference-callout">{s.callout}</p>}</div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
