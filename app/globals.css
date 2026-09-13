@@ -430,3 +430,9 @@
  .standard .cards > div { padding: 20px 20px 22px 60px; }
  .standard .cards .card-kicker { left: 16px; top: 20px; }
 }
+
+/* Stronger emphasis for the morning recap. */
+.standard[data-source="2:1070"] .cards > div:nth-child(1) { background-color: #bca0ee; }
+.standard[data-source="2:1070"] .cards > div:nth-child(2) { background-color: #94d8b3; }
+.standard[data-source="2:1070"] .cards > div:nth-child(3) { background-color: #ffc477; }
+.standard[data-source="2:1070"] .cards > div:nth-child(4) { background-color: #f4a4ce; }
