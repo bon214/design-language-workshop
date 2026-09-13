@@ -13,7 +13,7 @@ const pairs=(a,n=2)=>Array.from({length:Math.ceil(a.length/n)},(_,i)=>a.slice(i*
 function cards(i,kind='standard',n=2,bottom=false){const p=clean(i);add(i,kind,{items:pairs(p.slice(2,bottom?-1:undefined),n),...(bottom?{bottom:p.at(-1)}:{})});}
 function work(i){const p=clean(i),r=raw(i),at=r.indexOf('演習時間');const qs=p.slice(5);const items=qs.map(q=>[q]);if(items.at(-1)?.[0].startsWith('このデザインは'))items.at(-2).push(items.pop()[0]);add(i,'work',{time:Number(r[at+1]),mode:p[4],items});}
 function compact(i,ai=false){const p=clean(i);add(i,'compact-template',{items:pairs(p.slice(2,10)),...(ai?{bottom:p[10],callout:p[11]}:{summary:p[11]})});}
-function cover(i){const p=clean(i);add(i,'cover',{tag:undefined,title:i===1?p.slice(2,4).join('\n'):p[2],sub:i===1?p[4]:p[3],bottom:p.at(-2)});}
+function cover(i){const p=clean(i);add(i,'cover',{tag:undefined,title:i===1?p.slice(2,4).join(''):p[2],sub:i===1?p[4]:p[3],bottom:p.at(-2)});}
 
 cover(1);
 add(2,'opening-question');

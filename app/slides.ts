@@ -7,7 +7,7 @@ export const slides:Slide[]=
   {
     "chapter": 0,
     "kind": "cover",
-    "title": "デザインの\n言語化WS",
+    "title": "デザインの言語化WS",
     "sourceId": "2:6",
     "note": "09:00–09:02。開始前に、Work2で扱う自プロダクトの画面と根拠資料が手元にあるか確認する。",
     "sub": "「なぜ、このデザインなのか？」に答える",

@@ -335,6 +335,10 @@
 }
 .title-phrase { display: inline-block; max-width: 100%; overflow-wrap: normal; }
 .blackout { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; border: 0; }
+.cover[data-source='2:6'] .cover-type { container-type: inline-size; }
+.cover[data-source='2:6'] h1 { font-size: clamp(20px, 10cqi, 110px); white-space: nowrap; }
+.cover[data-source='2:6'] h1 > span { display: inline; }
+.cover[data-source='2:6'] h1 > span.yellow { margin-top: 0; }
 @media (min-width: 1001px) and (max-height: 850px) {
  .slide { padding-top: 16px; }
  .slide-heading { margin-bottom: 16px; }
