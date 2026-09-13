@@ -432,10 +432,10 @@
 }
 
 /* Stronger emphasis for the morning recap. */
-.standard[data-source="2:1070"] .cards > div:nth-child(1) { background-color: #bca0ee; }
-.standard[data-source="2:1070"] .cards > div:nth-child(2) { background-color: #94d8b3; }
-.standard[data-source="2:1070"] .cards > div:nth-child(3) { background-color: #ffc477; }
-.standard[data-source="2:1070"] .cards > div:nth-child(4) { background-color: #f4a4ce; }
+:is(.standard[data-source="2:1070"], .standard[data-source="20:208"]) .cards > div:nth-child(1) { background-color: #bca0ee; }
+:is(.standard[data-source="2:1070"], .standard[data-source="20:208"]) .cards > div:nth-child(2) { background-color: #94d8b3; }
+:is(.standard[data-source="2:1070"], .standard[data-source="20:208"]) .cards > div:nth-child(3) { background-color: #ffc477; }
+:is(.standard[data-source="2:1070"], .standard[data-source="20:208"]) .cards > div:nth-child(4) { background-color: #f4a4ce; }
 
 /* Slide 36: four cards in one row, matching the action slide. */
 .standard[data-source="2:2103"] .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 23px; }
