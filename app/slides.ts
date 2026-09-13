@@ -1232,7 +1232,7 @@ export const slides:Slide[]=
   {
     "chapter": 7,
     "kind": "work",
-    "title": "フィードバックをもとに判断を見直す",
+    "title": "フィードバックをもとに提案内容を見直す",
     "tag": "WORK 2-2 · 判断の見直し",
     "sourceId": "2:3410",
     "note": "15:30–15:40。Work2-2。提案内容の見直し10分。変更点と変更理由をメモする。",
