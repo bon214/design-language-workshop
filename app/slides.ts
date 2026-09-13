@@ -193,7 +193,7 @@ export const slides:Slide[]=
       [
         "Devs",
         "Feasibility",
-        "技術的に適切かつ\n持続可能な方法で実現できるか"
+        "技術的に適切かつ持続可能な方法で\n実現できるか"
       ]
     ],
     "timeWindow": "09:18–09:21"

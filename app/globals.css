@@ -358,3 +358,6 @@
  .goal[data-source='30:899'] .goal-grid { display: grid; grid-template-columns: repeat(2, 100px); gap: 12px; }
  .goal[data-source='30:899'] .goal-grid > section { width: 100px; height: 100px; }
 }
+@media (min-width: 681px) {
+ .perspective-role-2 p { font-size: clamp(13px, 1.35vw, 17px); }
+}
