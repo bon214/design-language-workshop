@@ -137,8 +137,8 @@
 
 /* Adjust existing colored content panels only; preserve all other surfaces and styles. */
 .role-perspectives .perspective-role-2{background-color:#b6e2cc}
-.shared-understanding .shared-method:first-child{background-color:var(--yellow)}
-.shared-understanding .shared-method:nth-child(2){background-color:#c4aff5}
+.shared-understanding .shared-method:first-child{background-color:#c4aff5}
+.shared-understanding .shared-method:nth-child(2){background-color:var(--yellow)}
 .evidence-check .cards>div:first-child{background-color:#c5e8d5}
 .evidence-check .cards>div:nth-child(2){background-color:#ffdbaf}
 .role-dialogue .role-dialogue-grid>section:first-child{background-color:var(--yellow)}
