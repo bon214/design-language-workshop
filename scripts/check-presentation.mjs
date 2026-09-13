@@ -6,16 +6,53 @@ import fs from 'node:fs';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/Users/kubo_hayato/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const html = fs.readFileSync('out/github-pages/index.html');
+const deck = JSON.parse(fs.readFileSync('app/slides.ts', 'utf8').split('export const slides:Slide[]=\n')[1].replace(/;\s*$/, ''));
+const animatedPage = deck.findIndex(s => s.kind === 'role-dialogue') + 1;
 const server = createServer((_req, res) => { res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.end(html); });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}/`;
 const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
 try {
+ async function checkClickNavigation(page) {
+  const go = async n => {
+   await page.evaluate(n => { location.hash = `slide-${n}`; }, n);
+   await page.locator(`article[aria-label^="${n}枚目"]`).waitFor();
+  };
+  const clickSide = async side => {
+   const article = page.locator('article');
+   const box = await article.boundingBox();
+   await article.click({ position: { x: box.width * (side === 'left' ? 0.08 : 0.92), y: box.height * 0.8 } });
+  };
+  const assertPage = async n => assert.match(await page.locator('article').getAttribute('aria-label'), new RegExp(`^${n}枚目`));
+  await go(59);
+  assert(!await page.locator('article').innerText().then(t => t.includes('16:30–16:31')));
+  await clickSide('right'); await assertPage(60);
+  await clickSide('left'); await assertPage(59);
+  await go(1); await clickSide('left'); await assertPage(1);
+  await go(deck.length); await clickSide('right'); await assertPage(deck.length);
+  // Either half reveals the animation; further clicks must wait for it to finish.
+  for (const side of ['left', 'right']) {
+   await go(animatedPage - 1); await go(animatedPage);
+   await clickSide(side); await assertPage(animatedPage);
+   assert(await page.locator('article').evaluate(a => a.classList.contains('dialogue-revealed')));
+   await clickSide(side); await assertPage(animatedPage);
+   await page.waitForFunction(() => document.querySelector('.dialogue-closing').getAnimations({ subtree: true }).every(a => a.playState !== 'running' && !a.pending));
+   await clickSide(side); await assertPage(animatedPage + (side === 'left' ? -1 : 1));
+  }
+  await go(55);
+  const closeTimer=page.getByRole('button', { name: 'タイマーを閉じる', exact: true });
+  if(await closeTimer.isVisible())await closeTimer.click();
+  await page.getByRole('button', { name: '15分のタイマーを開始', exact: true }).click();
+  await assertPage(55);
+  await page.getByRole('button', { name: 'タイマーを閉じる', exact: true }).click();
+  await assertPage(55);
+ }
  const context = await browser.newContext({ viewport: { width: 1159, height: 777 } });
  const errors = [];
  context.on('page', p => p.on('pageerror', e => errors.push(e.message)));
  const control = await context.newPage();
  await control.goto(`${base}?v=check#slide-55`);
+ await checkClickNavigation(control);
  await control.getByRole('button', { name: '講師メモ', exact: true }).click();
  const popupReady = control.waitForEvent('popup');
  await control.getByRole('button', { name: '全画面表示（別タブ）', exact: true }).click();
@@ -46,7 +83,7 @@ try {
  assert.equal(await frame.locator('article [role="timer"]').textContent(), paused);
  await frame.getByRole('button', { name: 'タイマーをリセット', exact: true }).click();
  assert.equal(await frame.locator('article [role="timer"]').textContent(), '15:00');
- await frame.locator('article').click({ position: { x: 20, y: 20 } });
+ await slideFrame.evaluate(() => window.focus());
  await presentation.keyboard.press('ArrowRight');
  await frame.locator('article[aria-label^="56枚目"]').waitFor();
  await presentation.waitForURL(/#slide-56$/);
@@ -59,9 +96,10 @@ try {
  await presentation.waitForFunction(() => !document.fullscreenElement);
  await presentation.keyboard.press('f');
  await presentation.waitForFunction(() => !!document.fullscreenElement);
+ await checkClickNavigation(slideFrame);
  const overflow = [];
  fs.mkdirSync('out/presentation-check', { recursive: true });
- for (let n = 1; n <= 68; n++) {
+ for (let n = 1; n <= deck.length; n++) {
   await slideFrame.evaluate(n => { location.hash = `slide-${n}`; }, n);
   await frame.locator(`article[aria-label^="${n}枚目"]`).waitFor();
   const size = await slideFrame.evaluate(() => ({ w: innerWidth, h: innerHeight, sw: document.documentElement.scrollWidth, sh: document.documentElement.scrollHeight }));
@@ -93,7 +131,7 @@ try {
  assert.match(await control.locator('.status-message').textContent(), /ポップアップを許可/);
  assert.equal(await control.evaluate(() => !!document.fullscreenElement), false);
  assert.deepEqual(errors, []);
- console.log(JSON.stringify({ result: 'passed', checks: ['separate tab at current slide', 'original tab and notes retained', 'slide-only display', 'real fullscreen and iframe F shortcut', 'timer start/pause/reset', 'navigation and blackout', '68 slides fit', 'three viewport sizes', 'reuse and reopen', 'blocked popup recovery'], errors, overflow }, null, 2));
+ console.log(JSON.stringify({ result: 'passed', checks: ['59 timestamp removed', 'left/right clicks in normal and fullscreen modes', 'animation priority and running guard', 'first/last slide boundaries', 'timer controls do not navigate', 'separate tab at current slide', 'original tab and notes retained', 'slide-only display', 'real fullscreen and iframe F shortcut', 'timer start/pause/reset', 'navigation and blackout', 'all slides fit', 'three viewport sizes', 'reuse and reopen', 'blocked popup recovery'], errors, overflow }, null, 2));
 } finally {
  await browser.close();
  await new Promise(resolve => server.close(resolve));

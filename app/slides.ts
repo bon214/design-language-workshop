@@ -1287,8 +1287,7 @@ export const slides:Slide[]=
     "title": "ワーク終了！お疲れ様でした",
     "sourceId": "35:1494",
     "note": "16:30–16:31。Work1・Work2の演習は終了。続いて講義の要点と実務への持ち帰りをまとめる。",
-    "illustration": "welcome",
-    "timeWindow": "16:30–16:31"
+    "illustration": "welcome"
   },
   {
     "chapter": 8,
