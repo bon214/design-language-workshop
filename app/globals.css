@@ -436,3 +436,11 @@
 .standard[data-source="2:1070"] .cards > div:nth-child(2) { background-color: #94d8b3; }
 .standard[data-source="2:1070"] .cards > div:nth-child(3) { background-color: #ffc477; }
 .standard[data-source="2:1070"] .cards > div:nth-child(4) { background-color: #f4a4ce; }
+
+/* Slide 36: four cards in one row, matching the action slide. */
+.standard[data-source="2:2103"] .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 23px; }
+.standard[data-source="2:2103"] .cards > div { padding: 18px; min-height: 250px; }
+.standard[data-source="2:2103"] .cards .card-kicker { position: static; margin-bottom: 16px; }
+@media (max-width: 680px) {
+ .standard[data-source="2:2103"] .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+}
