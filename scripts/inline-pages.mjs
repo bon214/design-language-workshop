@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const dir='out/github-pages';
+let html=fs.readFileSync(path.join(dir,'index.html'),'utf8');
+html=html.replace(/<script type="module"[^>]*src="([^\"]+)"[^>]*><\/script>/g,(_,src)=>'<script type="module">'+fs.readFileSync(path.join(dir,src),'utf8').replaceAll('</script','<\\/script')+'</script>');
+html=html.replace(/<link rel="stylesheet"[^>]*href="([^\"]+)"[^>]*>/g,(_,src)=>'<style>'+fs.readFileSync(path.join(dir,src),'utf8')+'</style>');
+fs.writeFileSync(path.join(dir,'index.html'),html);
+fs.writeFileSync(path.join(dir,'.nojekyll'),'');
+fs.copyFileSync('public/cover-thumbnail.png',path.join(dir,'cover-thumbnail.png'));
+if(/(?:src|href)="\.\/assets\//.test(html))throw new Error('Unresolved asset');
+console.log('Standalone GitHub Pages HTML:',Buffer.byteLength(html),'bytes');
