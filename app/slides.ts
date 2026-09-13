@@ -1225,7 +1225,6 @@ export const slides:Slide[]=
     "tag": "休憩",
     "sourceId": "2:2805",
     "note": "15:15–15:30。午後の15分休憩。15:30再開。",
-    "bottom": "休憩後にワークを通じて言語化の実践を行います",
     "time": 15,
     "timerPlacement": "badge",
     "timeWindow": "15:15–15:30"
