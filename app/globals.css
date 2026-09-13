@@ -393,3 +393,24 @@
  .slide[data-source="2:1411"] .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
  .slide[data-source="2:1411"] .flow-grid > div { min-height: 168px; padding: 12px; }
 }
+
+/* Workshop instruction panels and in-slide timer controls. */
+.slide.work { padding-top: 72px; }
+.work .work-layout { grid-template-columns: minmax(135px, 17%) minmax(0, 1fr); gap: 32px; }
+.work .work-duration { padding: 28px 15px 20px; }
+.work .work-duration strong { font-size: clamp(64px, 7vw, 105px); }
+.work .work-instructions { min-height: 310px; padding: 30px 36px; display: flex; flex-direction: column; justify-content: space-evenly; gap: 24px; }
+.work .work-instructions > div { margin: 0; align-items: flex-start; }
+.work .work-instructions h2 { font-size: clamp(19px, 1.85vw, 29px); line-height: 1.5; margin: 0; }
+.work .work-instructions section { min-width: 0; }
+.work .work-instructions section p { margin-top: 16px; padding: 14px 18px; background: #e6dbfa; border: 1.5px dashed #8a74ab; border-radius: 8px; font-weight: 650; }
+.work .work-timer { top: 15px; right: clamp(30px, 4.4vw, 72px); transform: none; width: auto; aspect-ratio: auto; flex-direction: row; gap: 12px; padding: 7px 12px; border-radius: 999px; background: var(--paper); box-shadow: none; }
+.work .work-timer output { font-size: 26px; line-height: 1; }
+.work .work-timer button { width: 30px; height: 30px; min-height: 30px; }
+.work .work-timer .break-timer-actions { gap: 5px; }
+@media (max-width: 680px) {
+ .slide.work { padding-top: 80px; }
+ .work .work-layout { grid-template-columns: 1fr; gap: 22px; }
+ .work .work-instructions { min-height: 300px; padding: 24px 20px; }
+ .work .work-timer { position: absolute; margin: 0; max-width: none; right: 20px; }
+}
