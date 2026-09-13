@@ -364,3 +364,6 @@
 
 .compact-template[data-source='added-template-step-1'] .compact-template-card { background: #f5f5f5; }
 .compact-template[data-source='added-template-step-1'] .compact-template-card:first-child { background: #d5e8ff; }
+
+.compact-template[data-source='added-template-step-2'] .compact-template-card { background: #f5f5f5; }
+.compact-template[data-source='added-template-step-2'] .compact-template-card:nth-child(2) { background: #dfebcc; }
