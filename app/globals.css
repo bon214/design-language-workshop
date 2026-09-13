@@ -381,3 +381,15 @@
 .slide[data-source="35:1446"] .transition-art { transform: rotate(4deg); background: #f2eafa; border: 1.5px solid var(--ink); border-radius: 48% 48% 16px 16px; box-shadow: 5px 5px 0 var(--ink); overflow: hidden; }
 .slide[data-source="35:1446"] .transition-art::before { display: none; }
 .slide[data-source="35:1446"] .transition-art .concept-art { padding: 18px 10px 0; }
+
+/* The eight recorded actions use consistent, wide rows for readable copy. */
+.slide[data-source="2:1411"] .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 14px 24px; }
+.slide[data-source="2:1411"] .flow-grid > div { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 14px; min-height: 78px; padding: 14px 18px; background: #f2eafa; border-radius: 12px; }
+.slide[data-source="2:1411"] .flow-grid > div::after { display: none; }
+.slide[data-source="2:1411"] .flow-number { display: grid; place-items: center; width: 34px; height: 34px; margin: 0; border-radius: 50%; background: var(--ink); color: white; font-size: 14px; letter-spacing: 0; }
+.slide[data-source="2:1411"] .flow-number::before { display: none; }
+.slide[data-source="2:1411"] .flow-grid h2 { margin: 0; font-size: clamp(17px, 1.5vw, 23px); line-height: 1.5; letter-spacing: -.025em; }
+@media (max-width: 680px) {
+ .slide[data-source="2:1411"] .flow-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 12px; }
+ .slide[data-source="2:1411"] .flow-grid > div { min-height: 72px; padding: 14px; }
+}
