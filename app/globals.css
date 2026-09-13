@@ -378,9 +378,9 @@
 .compact-template[data-source='added-template-step-4'] .compact-template-card:nth-child(4) { background: #f7d2e7; }
 
 /* Work1: keep the thinking character and its frame on the same tilt. */
-.slide:is([data-source="35:1446"], [data-source="35:1490"]) .transition-art { transform: rotate(4deg); background: #f2eafa; border: 1.5px solid var(--ink); border-radius: 48% 48% 16px 16px; box-shadow: 5px 5px 0 var(--ink); overflow: hidden; }
-.slide:is([data-source="35:1446"], [data-source="35:1490"]) .transition-art::before { display: none; }
-.slide:is([data-source="35:1446"], [data-source="35:1490"]) .transition-art .concept-art { padding: 18px 10px 0; }
+.slide:is([data-source="35:1446"], [data-source="35:1490"], [data-source="32:1403"]) .transition-art { transform: rotate(4deg); background: #f2eafa; border: 1.5px solid var(--ink); border-radius: 48% 48% 16px 16px; box-shadow: 5px 5px 0 var(--ink); overflow: hidden; }
+.slide:is([data-source="35:1446"], [data-source="35:1490"], [data-source="32:1403"]) .transition-art::before { display: none; }
+.slide:is([data-source="35:1446"], [data-source="35:1490"], [data-source="32:1403"]) .transition-art .concept-art { padding: 18px 10px 0; }
 
 /* Eight actions: four equal cards per row, with directional arrows. */
 .slide[data-source="2:1411"] .flow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 24px; }
