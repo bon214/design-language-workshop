@@ -447,3 +447,14 @@
 
 .break[data-break="lunch"] .has-break-timer { --break-timer-size: clamp(210px, 23vw, 290px); width: 100%; }
 .break[data-break="lunch"] .has-break-timer h1 { font-size: clamp(35px, 4vw, 66px); margin: 0 0 35px; line-height: 1.4; }
+
+/* Naiki is a supporting character, separate from the main mascot. */
+.guest .guest-composition { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: center; gap: 36px; }
+.guest .slide-heading { margin: 0; }
+.guest h1 { font-size: clamp(32px, 3.6vw, 58px); line-height: 1.5; text-wrap: wrap; }
+.guest-character { justify-self: center; width: 100%; max-width: 340px; }
+.guest-character img { display: block; width: 100%; height: 440px; object-fit: contain; }
+@media (max-width: 680px) {
+ .guest .guest-composition { grid-template-columns: 1fr; gap: 24px; }
+ .guest-character img { height: 320px; }
+}

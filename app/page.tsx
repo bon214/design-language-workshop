@@ -1,5 +1,6 @@
 'use client';
 /* oxlint-disable next/no-img-element -- This slide deck also ships as static GitHub Pages assets without an image optimization server. */
+import naikiCharacter from '../public/character-naiki.png?url';
 import thinkingCharacter from '../public/concept-character-thinking.png?url';
 import conceptCharacter from '../public/concept-character.png?url';
 import welcomeCharacter from '../public/concept-character-welcome.png?url';
@@ -25,7 +26,7 @@ function Content({s,revealed=false,breakTimer}:{s:Slide;revealed?:boolean;breakT
  if(s.kind==='goal')return <><div className="slide-heading">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1>{s.title}</h1></div><div className="goal-grid">{s.items?.map(([label,detail])=><section key={label}><h2>{label}</h2>{detail&&<p>{detail}</p>}</section>)}</div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
  if(s.kind==='transition')return <div className="transition-composition"><div className="transition-copy">{s.tag&&<span className="eyebrow">{s.tag}</span>}<h1><PhrasedTitle text={s.title}/></h1>{s.sub&&<p className="lead">{s.sub}</p>}{s.bottom&&<p className="transition-bottom">{s.bottom}</p>}{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}</div><div className={`transition-art ${s.illustration==='welcome'?'paper-art':''}`}><ConceptArt welcome={s.illustration==='welcome'} thinking={s.sourceId==='35:1446'}/></div></div>;
  if(s.kind==='karuta')return <><SlideHeading s={s}/><div className="karuta-scene"><img src={karutaCharacters} alt="二人のコンセプトキャラクターがカルタで遊んでいる様子"/></div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
- if(s.kind==='guest')return <div className="guest-composition"><SlideHeading s={s}/><div className="guest-duration">{s.timeWindow&&<time className="session-time">{s.timeWindow}</time>}{s.time&&<span>{s.time}<small>分</small></span>}</div></div>;
+ if(s.kind==='guest')return <div className="guest-composition"><SlideHeading s={{...s,title:s.title.replace(' - ','\n- ')}}/><div className="guest-character"><img src={naikiCharacter} alt="花を持ったサブキャラクター、Naiki"/></div></div>;
  if(s.kind==='reference-image')return <><SlideHeading s={s}/><div className="reference-image-layout"><a href={caseSearchReference} target="_blank" rel="noreferrer" aria-label="検索結果の参考画像を大きく表示"><img src={caseSearchReference} alt="T-Waveで住所変更を検索した結果の参考画像"/></a>{s.callout&&<p className="reference-callout">{s.callout}</p>}</div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
  if(s.kind==='hypotheses')return <><SlideHeading s={s}/><div className="hypotheses-diagram"><section className="hypothesis-fact"><h2>{s.items?.[0]?.[0]}</h2><p>{s.items?.[0]?.[1]}</p></section><div className="hypothesis-branches">{s.items?.slice(1).map(([label,text],i)=><section key={label+i}><h2>{label}</h2><p>{text}</p></section>)}</div></div>{s.bottom&&<div className="bottom-message">{s.bottom}</div>}</>;
 
