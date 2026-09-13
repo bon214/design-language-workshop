@@ -1,6 +1,6 @@
 export type Slide={chapter:number;kind?:string;title:string;sub?:string;items?:string[][];note:string;time?:number;timerPlacement?:'badge';mode?:string;done?:string;tag?:string;bottom?:string;sourceId?:string;timeWindow?:string;illustration?:'concept'|'welcome';summary?:string;callout?:string};
 export const chapters=["導入","考え方と型","Work1｜共通テーマ","提案後のアクション","UIカルタ・UI言語化講座","午後の振り返り・AI","Work2-1｜自プロダクトの提案","Work2-2｜提案の見直し","まとめ・実務へ持ち帰る"];
-export const schedule=[["09:00–09:15","導入"],["09:15–09:45","言語化のステップ"],["09:45–10:00","休憩"],["10:00–11:15","Work1｜共通テーマ"],["11:15–11:30","提案後の振り返り・ミニ講義"],["11:30–12:30","昼休憩"],["12:30–13:00","UIカルタ"],["13:00–13:25","NaikiのUI言語化講座"],["13:25–13:35","振り返り・Tips"],["13:35–15:05","Work2-1｜自プロダクトの言語化・提案"],["15:05–15:15","提案後の振り返り"],["15:15–15:30","休憩"],["15:30–16:30","Work2-2｜見直し・再提案"],["16:30–17:00","まとめ"]];
+export const schedule=[["09:00–09:15","導入"],["09:15–09:45","言語化のステップ"],["09:45–11:15","Work1｜共通テーマ"],["11:15–11:30","提案後の振り返り・ミニ講義"],["11:30–12:30","昼休憩"],["12:30–13:00","UIカルタ"],["13:00–13:25","NaikiのUI言語化講座"],["13:25–13:35","振り返り・Tips"],["13:35–15:05","Work2-1｜自プロダクトの言語化・提案"],["15:05–15:15","提案後の振り返り"],["15:15–15:30","休憩"],["15:30–16:30","Work2-2｜見直し・再提案"],["16:30–17:00","まとめ"]];
 export const steps:string[][]=[];
 export const slides:Slide[]=
 [
@@ -538,24 +538,14 @@ export const slides:Slide[]=
     "timeWindow": "09:43–09:45"
   },
   {
-    "chapter": 1,
-    "kind": "break",
-    "title": "休憩！",
-    "sourceId": "2:1136",
-    "note": "09:45–10:00。午前の15分休憩。10:00再開。",
-    "bottom": "休憩後にワークを通じて言語化の実践を行います",
-    "time": 15,
-    "timerPlacement": "badge"
-  },
-  {
     "chapter": 2,
     "kind": "transition",
     "title": "Work1：住所変更関連手続きの進め方がよく分からない",
     "tag": "WORK 1",
     "sourceId": "35:1446",
-    "note": "10:00–10:01。Work1の開始。22〜26ページを10分で説明し、資料を確認する時間を含める。",
+    "note": "09:45–09:46。Work1の開始。テーマ説明と資料確認を10分で行う。",
     "illustration": "concept",
-    "timeWindow": "10:00–10:01"
+    "timeWindow": "09:45–09:46"
   },
   {
     "chapter": 2,
@@ -563,7 +553,7 @@ export const slides:Slide[]=
     "title": "Work1 住所変更関連手続きの進め方がよく分からない",
     "tag": "03 / 共通テーマ",
     "sourceId": "2:1153",
-    "note": "10:01–10:03。Figmaの本文と順番に沿って説明する。",
+    "note": "09:46–09:48。Figmaの本文と順番に沿って説明する。",
     "items": [
       [
         "シチュエーション",
@@ -571,7 +561,7 @@ export const slides:Slide[]=
       ]
     ],
     "bottom": "社員はT-Waveで「住所変更」と検索し、住所変更ページを閲覧しています。 しかし社員は、どれが自分が求めている手続きの入口なのか、住所以外に何を変更する必要があるのか、どこから申請を開始するのかを判断するまでに時間がかかりました。",
-    "timeWindow": "10:01–10:03"
+    "timeWindow": "09:46–09:48"
   },
   {
     "chapter": 2,
@@ -579,7 +569,7 @@ export const slides:Slide[]=
     "title": "相談者の情報",
     "tag": "03 / 共通テーマ",
     "sourceId": "2:1181",
-    "note": "10:03–10:06。Figmaの本文と順番に沿って説明する。",
+    "note": "09:48–09:51。Figmaの本文と順番に沿って説明する。",
     "items": [
       [
         "技術系部署所属"
@@ -613,7 +603,7 @@ export const slides:Slide[]=
       ]
     ],
     "bottom": "自分に必要な社内の住所関連手続きを漏れなく把握し、期限内に正しく完了したい。",
-    "timeWindow": "10:03–10:06"
+    "timeWindow": "09:48–09:51"
   },
   {
     "chapter": 2,
@@ -621,9 +611,9 @@ export const slides:Slide[]=
     "title": "【資料】検索結果の参考画像",
     "tag": "03 / 共通テーマ",
     "sourceId": "2:1282",
-    "note": "10:06–10:08。Figmaの本文と順番に沿って説明する。",
+    "note": "09:51–09:53。Figmaの本文と順番に沿って説明する。",
     "callout": "その他詳細は\nワークボードを見てね！",
-    "timeWindow": "10:06–10:08"
+    "timeWindow": "09:51–09:53"
   },
   {
     "chapter": 2,
@@ -631,7 +621,7 @@ export const slides:Slide[]=
     "title": "【資料】相談者が実際に取った行動",
     "tag": "03 / 共通テーマ",
     "sourceId": "2:1411",
-    "note": "10:08–10:10。資料の確認をここまでに終える。分からない点はワーク中の巡回で補足する。",
+    "note": "09:53–09:55。資料の確認をここまでに終える。分からない点はワーク中の巡回で補足する。",
     "items": [
       [
         "検索する"
@@ -659,7 +649,7 @@ export const slides:Slide[]=
       ]
     ],
     "bottom": "行動の記録と、「なぜそうしたのか」という解釈を分けて書きましょう。",
-    "timeWindow": "10:08–10:10"
+    "timeWindow": "09:53–09:55"
   },
   {
     "chapter": 2,
@@ -667,8 +657,8 @@ export const slides:Slide[]=
     "title": "事実と仮説を分け、 ユーザーの課題を考えましょう",
     "tag": "WORK 1 · 問い 01–02",
     "sourceId": "2:1535",
-    "note": "10:10–10:25。個人で15分。ワークボードの問い01〜02を扱う。",
-    "time": 15,
+    "note": "09:55–10:15。個人で20分。ワークボードの問い01〜02を扱う。",
+    "time": 20,
     "mode": "個人",
     "items": [
       [
@@ -681,7 +671,7 @@ export const slides:Slide[]=
         "ユーザーは何に困っていますか"
       ]
     ],
-    "timeWindow": "10:10–10:25"
+    "timeWindow": "09:55–10:15"
   },
   {
     "chapter": 2,
@@ -689,8 +679,8 @@ export const slides:Slide[]=
     "title": "目指す状態を決め、 解決方法を比較しましょう",
     "tag": "WORK 1 · 問い 03–04",
     "sourceId": "2:1616",
-    "note": "10:25–10:45。個人で20分。ワークボードの問い03〜04を扱う。",
-    "time": 20,
+    "note": "10:15–10:40。個人で25分。ワークボードの問い03〜04を扱う。",
+    "time": 25,
     "mode": "個人",
     "items": [
       [
@@ -704,7 +694,7 @@ export const slides:Slide[]=
         "このデザインは［誰の］［どんな課題］を解決するために［解決策］を選びました。"
       ]
     ],
-    "timeWindow": "10:25–10:45"
+    "timeWindow": "10:15–10:40"
   },
   {
     "chapter": 2,
@@ -712,8 +702,8 @@ export const slides:Slide[]=
     "title": "テーブル内でお互いに発表し合い、FBしましょう",
     "tag": "WORK 1 · 説明とフィードバック",
     "sourceId": "2:1697",
-    "note": "10:45–11:15。3人組で30分。全員同時の提案準備3分＋1人あたり発表3分・質問とFB5分を3巡（24分）＋交代と記録3分。発表とFBの時間はFigmaどおり保つ。",
-    "time": 30,
+    "note": "10:40–11:15。3人組で35分。全員同時の提案準備3分＋1人あたり発表3分・質問とFB5分を3巡（24分）＋交代と記録8分。追加の5分はFBの整理・記録に充てる。",
+    "time": 35,
     "mode": "3人組・交代",
     "items": [
       [
@@ -726,7 +716,7 @@ export const slides:Slide[]=
         "質問・FB：5分"
       ]
     ],
-    "timeWindow": "10:45–11:15"
+    "timeWindow": "10:40–11:15"
   },
   {
     "chapter": 3,
