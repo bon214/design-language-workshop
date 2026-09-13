@@ -131,7 +131,7 @@
 
 .case-situation{padding:24px 28px;border:1.5px solid var(--ink);border-radius:16px;background:#f2eafa;box-shadow:5px 5px 0 var(--ink)}
 .case-situation h2{display:table;font-size:16px;font-weight:800;line-height:1.5;margin:0 0 18px;padding:5px 12px;border:1.5px solid var(--ink);border-radius:999px;background:var(--yellow)}
-.case-situation p{font-size:clamp(22px,2vw,32px);font-weight:700;line-height:1.65;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.case-situation p{font-size:clamp(22px,2vw,32px);font-weight:700;line-height:1.65;letter-spacing:-.025em;margin:0;text-wrap:wrap}
 .case-context{font-size:clamp(18px,1.6vw,25px);font-weight:400;line-height:1.75;white-space:pre-line;margin:28px 0 0;padding-top:20px;border-top:1.5px dashed #aaa3ae}
 @media(max-width:680px){.case-situation{padding:20px;border-radius:13px;box-shadow:3px 3px 0 var(--ink)}.case-situation h2{font-size:15px;margin-bottom:16px}.case-situation p{font-size:22px}.case-context{font-size:18px;margin-top:24px;padding-top:18px}}
 
