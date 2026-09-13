@@ -367,7 +367,7 @@ export const slides:Slide[]=
   {
     "chapter": 1,
     "kind": "hypotheses",
-    "title": "1つの事実から、 複数の解釈を考える",
+    "title": "事実を元に仮説を立てていく",
     "tag": "02 / ミニ講義",
     "sourceId": "2:1912",
     "note": "09:37–09:39。Figmaの本文と順番に沿って説明する。",
