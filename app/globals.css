@@ -192,7 +192,6 @@
 .transition-art.paper-art .concept-art { border-radius: 12px; }
 .comic-listener { filter: none; mix-blend-mode: normal; height: 250px; bottom: -44px; }
 .dialogue-cheers { width: 166px; max-width: 20%; max-height: 180px; object-fit: contain; mix-blend-mode: normal; }
-.cover.with-character .cover-composition { grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr); gap: 7%; }
 .cover.with-character h1 { font-size: clamp(35px, 4vw, 66px); line-height: 1.4; }
 .cover-character { width: auto; height: 220px; max-width: 100%; margin: 20px auto 0; }
 .cover-character.welcome-art { background: white; padding: 7px; border: 1.5px solid var(--ink); border-radius: 18px; box-shadow: 4px 4px 0 var(--ink); transform: rotate(-4deg); }
@@ -273,7 +272,6 @@
  .transition-bottom { font-size: 20px; }
  .comic-listener { height: 220px; bottom: -42px; }
  .dialogue-cheers { max-width: 65%; width: 150px; max-height: 170px; }
- .cover.with-character .cover-composition { grid-template-columns: 1fr; gap: 26px; }
  .cover.with-character h1 { font-size: 37px; }
  .cover-character { height: 200px; }
  .karuta-scene img { max-height: 310px; }
