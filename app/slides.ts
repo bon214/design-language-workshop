@@ -1,4 +1,4 @@
-export type Slide={chapter:number;kind?:string;title:string;sub?:string;items?:string[][];note:string;time?:number;timerPlacement?:'badge';mode?:string;done?:string;tag?:string;bottom?:string;sourceId?:string;timeWindow?:string;illustration?:'concept'|'welcome';summary?:string;callout?:string};
+export type Slide={chapter:number;kind?:string;title:string;sub?:string;items?:string[][];itemMarker?:'bullet';note:string;time?:number;timerPlacement?:'badge';mode?:string;done?:string;tag?:string;bottom?:string;sourceId?:string;timeWindow?:string;illustration?:'concept'|'welcome';summary?:string;callout?:string};
 export const chapters=["導入","考え方と型","Work1｜共通テーマ","提案後のアクション","UIカルタ・UI言語化講座","午後の振り返り・AI","Work2-1｜自プロダクトの提案","Work2-2｜提案の見直し","まとめ・実務へ持ち帰る"];
 export const schedule=[["09:00–09:15","導入"],["09:15–09:45","言語化のステップ"],["09:45–11:15","Work1｜共通テーマ"],["11:15–11:30","提案後の振り返り・ミニ講義"],["11:30–12:30","昼休憩"],["12:30–13:00","UIカルタ"],["13:00–13:25","NaikiのUI言語化講座"],["13:25–13:35","振り返り・Tips"],["13:35–15:05","Work2-1｜自プロダクトの言語化・提案"],["15:05–15:15","提案後の振り返り"],["15:15–15:30","休憩"],["15:30–16:30","Work2-2｜見直し・再提案"],["16:30–17:00","まとめ"]];
 export const steps:string[][]=[];
@@ -671,7 +671,8 @@ export const slides:Slide[]=
         "ユーザーは何に困っていますか"
       ]
     ],
-    "timeWindow": "09:55–10:15"
+    "timeWindow": "09:55–10:15",
+    "itemMarker": "bullet"
   },
   {
     "chapter": 2,
@@ -694,7 +695,8 @@ export const slides:Slide[]=
         "このデザインは［誰の］［どんな課題］を解決するために［解決策］を選びました。"
       ]
     ],
-    "timeWindow": "10:15–10:40"
+    "timeWindow": "10:15–10:40",
+    "itemMarker": "bullet"
   },
   {
     "chapter": 2,
@@ -1083,7 +1085,8 @@ export const slides:Slide[]=
         "ユーザーは何に困っていますか"
       ]
     ],
-    "timeWindow": "13:40–13:50"
+    "timeWindow": "13:40–13:50",
+    "itemMarker": "bullet"
   },
   {
     "chapter": 6,
@@ -1106,7 +1109,8 @@ export const slides:Slide[]=
         "このデザインは［誰の］［どんな課題］を解決するために［解決策］を選びました。"
       ]
     ],
-    "timeWindow": "13:50–14:00"
+    "timeWindow": "13:50–14:00",
+    "itemMarker": "bullet"
   },
   {
     "chapter": 6,

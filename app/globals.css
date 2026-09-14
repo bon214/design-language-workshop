@@ -403,6 +403,7 @@
 .work .work-instructions > div { margin: 0; align-items: flex-start; }
 .work .work-instructions h2 { font-size: clamp(19px, 1.85vw, 29px); line-height: 1.5; margin: 0; }
 .work .work-instructions section { min-width: 0; }
+.work .instruction-bullet { flex-shrink: 0; width: 1em; color: var(--ink); font-size: clamp(19px, 1.85vw, 29px); font-weight: 800; line-height: 1.5; text-align: center; }
 .work .work-instructions section p { margin-top: 16px; padding: 14px 18px; background: #e6dbfa; border: 1.5px dashed #8a74ab; border-radius: 8px; font-weight: 650; }
 .work .work-timer { top: 15px; right: clamp(30px, 4.4vw, 72px); transform: none; width: auto; aspect-ratio: auto; flex-direction: row; gap: 12px; padding: 7px 12px; border-radius: 999px; background: var(--paper); box-shadow: none; }
 .work .work-timer output { font-size: 26px; line-height: 1; }
